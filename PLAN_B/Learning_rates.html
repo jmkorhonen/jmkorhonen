@@ -1,0 +1,248 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+    <title>Learning rates</title>
+
+    <meta name="generator" content="Zim Zim 0.73.5, based on the Ecodiv-responsive template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,greek,latin-ext' rel='stylesheet' type='text/css'> -->
+
+    <!-- Scripts -->
+    <script type='text/javascript' src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+    
+    <!-- !! Different stylesheets for different screen sizes. Adapt to your likening-->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <link rel="stylesheet" media="screen and (min-width: 741px)" href=..\_resources\style.css>
+    <link rel="stylesheet" media="screen and (max-width: 740px)" href=..\_resources\style_mobile.css>
+
+</head>
+<body onload="$.mobile.silentScroll(window.scrollY);" <!-- fix for jquery-mobile always scrolling to top at loading, see https://stackoverflow.com/questions/15255719/jquery-mobile-prevent-scroll-to-top-before-page-transition --> > 
+    
+    <!-- See the Zim help file on templates for options -->    <div class="container">
+        <div data-role="page" class="ui-responsive-panel">
+            
+            <!-- Header / title -->
+    
+            <div data-role="header" data-position="fixed">
+                <a href="#nav-panel" data-icon="bars">Table of content</a> 
+                
+                <!-- !! Fill in the website title, by default: Notebook -->
+                <h1>Notebook - Learning rates</h1> 
+                
+                <!-- !! Optionally, create button with custom link. To apply uncomment the next line and fill in the link (and optionally change the button and text)) -->
+                <!-- <a href="http://my.website.org" data-icon="home">Main website</a> -->
+                
+            </div>
+            
+            <!-- Warning message if java script is disabled -->
+            <noscript>
+                <div style="border: 1px solid purple; padding: 10px">
+                    <span style="color:red">This page is best viewed with JavaScript enabled!</span>
+                </div>
+            </noscript>
+
+            <!-- Page content -->
+            
+            <div data-role="content" class="content">
+                    <h1>Learning rates <a name='PLAN B:Learning rates'></a></h1>
+    
+                    <p>
+Created Thursday 04 February 2021 (21-02-04_17-28-09)<br>
+<span class="zim-tag">@2021</span> <span class="zim-tag">@uncategorized</span>
+</p>
+
+<br>
+
+
+                    <br></br>
+                    
+                    <hr class='footnotes'>
+                    <span class="backlinks">
+                    </span>
+    
+                <!-- !! The script will center all images. If you prefer the default (images at left delete these three lines -->    
+                <script>
+                    $( "img" ).wrap( "<div class='imgcenter'></div>" );
+                </script>
+    
+                
+            </div>
+            
+            <!-- Navigation panel -->
+            
+            <div data-role="panel" data-position-fixed="true" data-display="reveal" data-theme="a" id="nav-panel" data-dismissible="false">
+                <div style="display:inline-block;">
+                    
+                    <!-- !! If you want to place your logo, uncomment the next section and fill in the link between the quotation marks after href if you want the logo to link to another page or website -->
+                    <!-- <div id="logos" align="center">
+                        <a title="your title" href="" target="_blank">
+                            <img src=..\_resources\zim_logo.png style="border-style:none" align="right"></a>
+                    </div> -->
+                    
+                    <div>
+                        <!-- !! optionally.. add your custom search engine script -->
+                        <a href="#header" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Close panel</a>
+    
+                        <!-- !! optionally.. add link to start page or index page. To do so, uncomment the next 2 lines and fill in the webpage name / url-->
+                        <!-- <br></br>
+                        <a href="./link-to-start-page.html">Name of page</a>-->
+                        
+                        <!-- Generate the links to other pages (between-pages table of contents -->
+                        <ul>
+<li><a href="..\INDEX.html" title="INDEX" class="page">INDEX</a></li>
+<li><a href="..\PLAN_B.html" title="PLAN B" class="page">PLAN B</a>
+<ul>
+<li><a href="./0-Käy_läpi.html" title="0-Käy läpi" class="page">0-Käy läpi</a></li>
+<li><a href="./7_lessons_for_Canada.html" title="7 lessons for Canada" class="page">7 lessons for Canada</a></li>
+<li><a href="./Agriculture.html" title="Agriculture" class="page">Agriculture</a></li>
+<li><a href="./Backups.html" title="Backups" class="page">Backups</a></li>
+<li><a href="./Carbon_border_taxes_are_unjust.html" title="Carbon border taxes are unjust" class="page">Carbon border taxes are unjust</a></li>
+<li><a href="./Carbon_pricing_and_deep_decarbonization.html" title="Carbon pricing and deep decarbonization" class="page">Carbon pricing and deep decarbonization</a></li>
+<li><a href="./CCS.html" title="CCS" class="page">CCS</a></li>
+<li><a href="./CONSTRUCTION.html" title="CONSTRUCTION" class="page">CONSTRUCTION</a></li>
+<li><a href="./Consumption.html" title="Consumption" class="page">Consumption</a></li>
+<li><a href="./Costs.html" title="Costs" class="page">Costs</a></li>
+<li><a href="./Decent_living_with_minimum_energy.html" title="Decent living with minimum energy" class="page">Decent living with minimum energy</a></li>
+<li><a href="./Ending_coal_use_by_2030.html" title="Ending coal use by 2030" class="page">Ending coal use by 2030</a></li>
+<li><a href="./Energy_scenarios.html" title="Energy scenarios" class="page">Energy scenarios</a></li>
+<li><a href="./EU_current_situation.html" title="EU current situation" class="page">EU current situation</a></li>
+<li><a href="./EVs.html" title="EVs" class="page">EVs</a></li>
+<li><a href="./HEATING.html" title="HEATING" class="page">HEATING</a></li>
+<li><a href="./HYDROGEN.html" title="HYDROGEN" class="page">HYDROGEN</a></li>
+<li><a href="./Kemianteollisuus.html" title="Kemianteollisuus" class="page">Kemianteollisuus</a></li>
+<li><a href="./Kiinassa_saavutettu_hiilihuippu.html" title="Kiinassa saavutettu hiilihuippu" class="page">Kiinassa saavutettu hiilihuippu</a></li>
+<li><a href="./Kuluttajien_päästöt_-_Suomi.html" title="Kuluttajien päästöt - Suomi" class="page">Kuluttajien päästöt - Suomi</a></li>
+<li><a href="./LCAs.html" title="LCAs" class="page">LCAs</a></li>
+<li><a href="./Lean_production.html" title="Lean production" class="page">Lean production</a></li>
+<li><b>Learning rates</b>
+<ul>
+<li><a href="./Learning_rates/PV,_wind,_Li-Ion_(Bloomberg_2020).html" title="PV, wind, Li-Ion (Bloomberg 2020)" class="page">PV, wind, Li-Ion (Bloomberg 2020)</a></li>
+</ul>
+</li>
+<li><a href="./LUT_Environmental_Technology_Project_Work-kurssi.html" title="LUT Environmental Technology Project Work-kurssi" class="page">LUT Environmental Technology Project Work-kurssi</a></li>
+<li><a href="./MATERIALS.html" title="MATERIALS" class="page">MATERIALS</a></li>
+<li><a href="./Metabolism_review.html" title="Metabolism review" class="page">Metabolism review</a></li>
+<li><a href="./Near_optimal_RE_model.html" title="Near optimal RE model" class="page">Near optimal RE model</a></li>
+<li><a href="./Nuclear_-_SMR.html" title="Nuclear - SMR" class="page">Nuclear - SMR</a></li>
+<li><a href="./NWS.html" title="NWS" class="page">NWS</a></li>
+<li><a href="./Omavaraisuuslaina.html" title="Omavaraisuuslaina" class="page">Omavaraisuuslaina</a></li>
+<li><a href="./Plan_B.html" title="Plan B" class="page">Plan B</a></li>
+<li><a href="./PPL.html" title="PPL" class="page">PPL</a></li>
+<li><a href="./PyPSA.html" title="PyPSA" class="page">PyPSA</a></li>
+<li><a href="./Recycling.html" title="Recycling" class="page">Recycling</a></li>
+<li><a href="./REFS.html" title="REFS" class="page">REFS</a></li>
+<li><a href="./Resources.html" title="Resources" class="page">Resources</a></li>
+<li><a href="./Ruotsin_ilmastoelvytys.html" title="Ruotsin ilmastoelvytys" class="page">Ruotsin ilmastoelvytys</a></li>
+<li><a href="./SHIPPING.html" title="SHIPPING" class="page">SHIPPING</a></li>
+<li><a href="./Suomen_ilmastoelvytys.html" title="Suomen ilmastoelvytys" class="page">Suomen ilmastoelvytys</a></li>
+<li><a href="./Sustainable_Development_License_to_Operate.html" title="Sustainable Development License to Operate" class="page">Sustainable Development License to Operate</a></li>
+<li><a href="./Synthetic_methane.html" title="Synthetic methane" class="page">Synthetic methane</a></li>
+<li><a href="./The_case_for_emergency_decarbonization_planning.html" title="The case for emergency decarbonization planning" class="page">The case for emergency decarbonization planning</a></li>
+<li><a href="./The_open_web_in_the_implementation_of_real_adaptation_to_climate_change.html" title="The open web in the implementation of real adaptation to climate change" class="page">The open web in the implementation of real adaptation to climate change</a></li>
+<li><a href="./Tooze_-_the_world's_central_banks_are_starting_to_experiment.html" title="Tooze - the world's central banks are starting to experiment" class="page">Tooze - the world's central banks are starting to experiment</a></li>
+<li><a href="./Twitterketjut.html" title="Twitterketjut" class="page">Twitterketjut</a></li>
+<li><a href="./World_War_2_mobilization.html" title="World War 2 mobilization" class="page">World War 2 mobilization</a></li>
+</ul>
+</li>
+<li><a href="..\V.html" title="V" class="page">V</a></li>
+<li><a href="..\ZK.html" title="ZK" class="page">ZK</a></li>
+</ul>
+
+
+                        <!-- Current document's Table Of Contents placeholder and style, this table of content will be generated from headers in the document -->
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css">
+                        <style src="text/css">
+                        .toc-link, .toc-list-item, .toc-list-item a {
+                            /* Remove underlining for all toc entries */
+                            text-decoration: none;
+                        }
+                        .toc-link:not(.is-active-link) {
+                            /* Only leave the active toc entry (currently watched) as bold, else put text in normal weight */
+                            font-weight: normal !important;
+                        }
+                        </style>
+                        <nav class="toc js-toc relative z-1 transition--300 pa4" style="position: relative; max-width:inherit;">
+                        </nav>
+
+                        <!-- !! Optionally, button which brings the user to your contact form. To enable this, remove comment mark below and fill in the link between the quoation marks after href -->
+                        <!--<br></br>
+                        <a title="Contact us" data-icon="info" href="" data-role="button" target="_blank">Contact us</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate the Table Of Contents dynamically using javascript (via tocbot) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script>
+    <script type="text/javascript">
+    var content = document.body
+    var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6, h7')
+    var headingMap = {}
+
+    <!-- generate ids dynamically for each header, that's necessary for tocbot to work, source makeids from tocbot repository -->
+    Array.prototype.forEach.call(headings, function (heading) {
+        var id = heading.id ? heading.id : heading.textContent.trim().toLowerCase()
+            .split(' ').join('-').replace(/[!@#$%^&*():]/ig, '').replace(/\//ig, '-')
+        headingMap[id] = !isNaN(headingMap[id]) ? ++headingMap[id] : 0
+        if (headingMap[id]) {
+            heading.id = id + '-' + headingMap[id]
+        } else {
+            heading.id = id
+        }
+        // Add a self-referential link on the header's anchor, easier to share + jump to this anchor if clicked
+        heading.innerHTML = "<a href=\"#"+id+"\" onclick=\"jumpToAnchor('"+id+"');\";>"+heading.innerHTML+"</a>"
+    })
+
+    function jumpToAnchor(anchorId) {
+    // jump to an anchor
+    // from: https://stackoverflow.com/a/52138511/1121352
+    $(document).ready(function() {
+        // Pure JS solution, that doesn't cause the window to go back to the top before sliding to the anchor
+        const element = document.querySelector('#'+anchorId)
+        const topPos = element.getBoundingClientRect().top + window.pageYOffset
+
+        window.scrollTo({
+            top: topPos, // scroll so that the element is at the top of the view
+            behavior: 'smooth' // smooth scroll
+        })
+        // JQuery solution
+        /*
+        $('html, body').animate({
+            'scrollTop':   $('#'+anchorId).offset().top
+        }, 500);
+        */
+        // Ensure the anchor is added in the URL so the user can more easily copy the link and share from the browser's address bar directly
+        location.hash = "#" + anchorId;
+    });
+    }; // }(JQuery);
+
+    <!-- initialize tocbot with some options -->
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+      // Header levels collapsing by default
+      collapseDepth: 2,
+    });
+
+    <!-- ensure the window is scrolled to the anchor after the page finished loading (else jquery may scroll back to top, particularly on mobile) -->
+    document.addEventListener('DOMContentLoaded', function() {
+        anchor = window.top.location.hash;
+        anchor = anchor.split("#").pop();
+        jumpToAnchor(anchor);
+    }, false);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+    <title>Artificial-Simon</title>
+
+    <meta name="generator" content="Zim Zim 0.73.5, based on the Ecodiv-responsive template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,greek,latin-ext' rel='stylesheet' type='text/css'> -->
+
+    <!-- Scripts -->
+    <script type='text/javascript' src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+    
+    <!-- !! Different stylesheets for different screen sizes. Adapt to your likening-->
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <link rel="stylesheet" media="screen and (min-width: 741px)" href=..\..\_resources\style.css>
+    <link rel="stylesheet" media="screen and (max-width: 740px)" href=..\..\_resources\style_mobile.css>
+
+</head>
+<body onload="$.mobile.silentScroll(window.scrollY);" <!-- fix for jquery-mobile always scrolling to top at loading, see https://stackoverflow.com/questions/15255719/jquery-mobile-prevent-scroll-to-top-before-page-transition --> > 
+    
+    <!-- See the Zim help file on templates for options -->    <div class="container">
+        <div data-role="page" class="ui-responsive-panel">
+            
+            <!-- Header / title -->
+    
+            <div data-role="header" data-position="fixed">
+                <a href="#nav-panel" data-icon="bars">Table of content</a> 
+                
+                <!-- !! Fill in the website title, by default: Notebook -->
+                <h1>Notebook - Artificial-Simon</h1> 
+                
+                <!-- !! Optionally, create button with custom link. To apply uncomment the next line and fill in the link (and optionally change the button and text)) -->
+                <!-- <a href="http://my.website.org" data-icon="home">Main website</a> -->
+                
+            </div>
+            
+            <!-- Warning message if java script is disabled -->
+            <noscript>
+                <div style="border: 1px solid purple; padding: 10px">
+                    <span style="color:red">This page is best viewed with JavaScript enabled!</span>
+                </div>
+            </noscript>
+
+            <!-- Page content -->
+            
+            <div data-role="content" class="content">
+                    <h1>Artificial-Simon <a name='V:1969:Artificial-Simon'></a></h1>
+    
+                    <p>
+Created<br>
+<span class="zim-tag">@Cognition</span> <span class="zim-tag">@Design</span> <span class="zim-tag">@Complexity</span> <span class="zim-tag">@Book</span> <span class="zim-tag">@2016</span> 
+</p>
+
+<p>
+Simon, Herbert (1969) [1996]. <i>The Sciences of the Artificial</i>. 3rd ed.
+</p>
+
+<p>
+xii
+</p>
+
+<p>
+- the problem of artificiality
+</p>
+
+<p>
+Engineering, medicine, business, architecture and painting are concerned not with the necessary but with the contingent - not with how things are but how they might be - in short, with design. <br>
+- sciences of the artificial and science of design are similar if not the same<br>
+xiii<br>
+The topics of artificiality and complexity are inextricably interwoven. 
+</p>
+
+<p>
+4
+</p>
+
+<p>
+We speak of engineering as concerned with “synthesis,” while science is concerned with “analysis.” <br>
+- synthesis meaning indistinguishable from natural but manmade, in contrast to artifical which is evidently manmade
+</p>
+
+<p>
+5
+</p>
+
+<p>
+- boundaries for the sciences of the artificial:<br>
+<ol type="1" start="1">
+<li>Artificial things are synthetized (though not always or usually with full forethought) by human beings</li>
+<li>Artificial things may imitate appearances in natural things while lacking, in one or many respects, the reality of the latter</li>
+<li>Artificial things can be characterized in terms of functions, goals, adaptation</li>
+<li>Artificial things are often discussed, particularly when they are being designed, in terms of imperatives as well as descriptives</li>
+</ol>
+</p>
+
+<p>
+8
+</p>
+
+<p>
+- division of outer and inner environments
+</p>
+
+<p>
+12<br>
+- inner system is an organization of natural phenomena capable of attaining the goals in some range of environments<br>
+- the outer environment determines the conditions for goal attainment<br>
+13<br>
+- often we only meet the design objectives for the inner system approximately
+</p>
+
+<p>
+14
+</p>
+
+<p>
+Simulation as a Source of New Knowledge<br>
+How can a simulation ever tell us anything that we do not already know?<br>
+- although 1) a simulation is no better than the assumptions built into it, and 2) a computer can do only what it is programmed to do, <br>
+15<br>
+- simulations can provide new knowledge in two ways: <br>
+1) even with correct premises, it may be very difficult to discover what they imply, and <br>
+2) if knowing the internal structure of the system isn’t necessary for the abstraction, a simplified model can tell us a lot about the system 
+</p>
+
+<p>
+17<br>
+Resemblance in behavior of systems without identity of the inner systems is particularly feasible if the aspects in which we are interested arise out of the organization of the parts, independently of all but a few propoerties of the individual components. 
+</p>
+
+<p>
+22
+</p>
+
+<p>
+Basic capabilities of Symbol Systems<br>
+A physical symbol system holds a set of entities, called symbols. These are physical patterns (e.g. chalk marks on a blackboard) that can occur as components of symbol structures (sometimes called “expressions”). … a symbol system also possesses a number of simple processes that operate upon symbol structures - processes that create, modify, copy and destroy symbols. A physical symbol system is a machine that, as it moves through time, produces an evolving collection of symbol structures. Symbol structures can, and commonly do, serve as internal representations (e.g., “mental images”) of the environments to which the symbol system is seeking to adapt. They allow it to model that environment with greater or less veridicality and in greater or less detail, and consequently to reason about it. …
+</p>
+
+<p>
+23
+</p>
+
+<p>
+Intelligence as Computation<br>
+… the hypothesis is that a physical symbol system of the sort I have just described has the necessary and sufficient means for general intelligent action. 
+</p>
+
+<p>
+25
+</p>
+
+<p>
+<ol type="1" start="2">
+<li>ECONOMIC RATIONALITY: ADAPTIVE ARTIFICE</li>
+</ol>
+</p>
+
+<p>
+26
+</p>
+
+<p>
+Procedural rationality<br>
+27<br>
+At each step towards realism, the problem gradually changes from choosing the right course of action (substantive rationality) to finding a way of calculating, very approximately, where a good course of action lies (procedural rationality). With this shift, the theory of the firm becomes a theory of estimation under uncertainty and a theory of computation - decidedly non-trivial theories as the obscurities and complexities of information and computation increase. 
+</p>
+
+<p>
+33
+</p>
+
+<p>
+Markets and optimality<br>
+… Claims that it does more than merely clear markets require the strong assumptions of perfect competition and of maximization of profit or utility by the economic actors. With these assumptions, but not without them, the market equilibrium can be shown to be optimal in the sense that it could not be altered so as to make everyone simultaneously better off. These are the familiar propositions of Pareto optimality of competitive equilibrium that have been formalized so elegantly by Arrow, Debreu, Hurwicz, and others.<br>
+The optimality theory stretch credibility, so far as real-world markets are concerned, because they require substantive rationality of the kinds we found implausible in our examination of the theory of the firm. Markets populated by consumers and producers who satisfice instead of optimizing do not meet the conditions on which the theorems rest. But the experimental data on simulated markets show that market clearing, the only property of markets for which there is solid empirical evidence, can be achieved without the optimizing assumptions, hence also without claiming that markets do produce a Pareto optimum. [Gode and Sunder, “Allocative Efficiency of Markets with Zero-Intelligence Traders,” Journal of Political Economy 101(1993):119-127 - simulates markets with “stupid sellers (knowing only a minimum price below which they should not sell), and “stupid” buyers (knowing a maximum price above which they should not buy), finds that it moves towards equilibrium almost as rapidly as markets whose agents are rational in the classical sense.] As Samuel Johnson said of the dancing dog, “ The marvel is not that it dances well, but that it dances at all” - the marvel is not that markets optimize (they don’t) but that they often clear.
+</p>
+
+<p>
+Order without a Planner<br>
+34<br>
+… <br>
+If we focus on the equilibrating functions of markets and put aside the illusions of Pareto optimality, market processes commend themselves primarily because they avoid placing on a central planning mechanism a burden of calculation that such a mechamnism, however well buttressed by the largest computers, could not sustain. Markets appear to conserve information and calculation by assigning decisions to actors who can make them on the basis of information that is available to them locally  - that is, without knowing much about the rest of the economy apart from the prices and properties of the goods they are purchasing and the costs of the goods they are producing. <br>
+- “organization-&amp;-market economy”
+</p>
+
+<p>
+35<br>
+A remarkable paper by Kenneth Arrow, reprinted in The New Plagrave: A dictionary of Economics (London: Macmillan Press, 1987), v. 2, pp. 69-74, under the title of “Economic Theory and the Hypothesis of Rationality,” shows that to preserve the Pareto optimality properties of markets when there is uncertainty about the future, we must impose information and computational requirements on economic actors that are exceedingly burdensome and unrealistic. 
+</p>
+
+<p>
+38
+</p>
+
+<p>
+- in game theory and prisoner’s dilemma, if players are striving for a satisfactory payoff rather than an optimal payoff, the cooperative solution can be stable. Bounded rationality apperas  to produce better outcomes than unbounded rationality in this kind of competitive situation.<br>
+- the role of mutual expectations is ignored in classical economics<br>
+Game theory’s most valuable contribution has been to show that rationality is effectively undefinable when competitive actors have unlimited computational capabilities for outguessing each other, but that the problem does not arise as acutely in a world, like the real world, of bounded rationality.
+</p>
+
+<p>
+51
+</p>
+
+<p>
+<ol type="1" start="3">
+<li>THE PSYCHOLOGY OF THINKING: EMBEDDING ARTIFICE IN NATURE</li>
+</ol>
+</p>
+
+<p>
+53
+</p>
+
+<p>
+- hypothesis that human behavioral complexity is due to environment, not due to humans:<br>
+Human beings, viewed as behaving systems, are quite simple. The apparent complexity of our behavior over time is largely a reflection of the complexity of the environment in which we find ourselves.<br>
+- at least if limited to Homo Sapiens, the thinking person,, and human’s information packed memory is viewed more as a part of the environment to which it adapts rather than part of the organism itself<br>
+…<br>
+The reasons for assigning some a priori propability to the hypothesis of simplicity have already been set forth in the last two chapters. A thinking human being is an adaptive system; men’s goals define the interface between their inner and outer environments, including in the latter their memory stores. To the extent that they are efficiently adaptive, their behavior will reflect characteristics largely of the outer environment (in the light of their goals) and will reveal only a few limiting properties of the inner environment -of the physiological machinery that enables a person to think. 
+</p>
+
+<p>
+54
+</p>
+
+<p>
+Problem solving is often described as a search through a vast maze of possibilities, a maze that describes the environment. Successful problem solving involves searching the maze selectively and reducing it to manageable proportions.
+</p>
+
+<br>
+
+<p>
+85
+</p>
+
+<p>
+<ol type="1" start="4">
+<li>REMEMBEREING AND LEARNING: MEMORY AS ENVIRONMENT FOR THOUGHT</li>
+</ol>
+</p>
+
+<p>
+The hypothesis that human thought processes are simple emerged from the information-processing research of the 1950s and 1960s. 
+</p>
+
+<p>
+89
+</p>
+
+<p>
+Intuition
+</p>
+
+<p>
+- intuition is a label for a process, not an explanation of it<br>
+Most intuitive leaps are acts of recognition. 
+</p>
+
+<p>
+… one part of the grandmaster’s chess skill resides in the 50 000 chunks stored in memory, and in the index (in the form of a structure of feature tests) that allows him to recognize any one of these chunks on the chess board and to access the information in long-term memory that is associated with it. The information associated with familiar patterns may include knowledge about what to do when the pattern is encountered. <br>
+…<br>
+90
+</p>
+
+<p>
+The expert recognizes not only the situation in which he finds himself, but also what action might be appropriate for dealing with it. <br>
+A feature-testing system capable of discriminating among 50 000 different items might make its discriminations quite rapidly. Even if each test were dichotomous, which they probably are not, only about 16 tests would have to be performed to achieve each recognition. <br>
+HOX HOX! Tämähän tarkoittaa, että “learning tools” ovat sitä varten, että niillä tunnistetaan tilannetta paremmin/ niillä rakennetaan tilanne tunnistettavaksi. Voisiko kokeilla jotenkin, kuinka nopeasti esim. ekspertti tunnistaa tilanteen, ja kuinka paljon learning toolseja noviisi tarvitsee tilanteen tunnistamiseen?
+</p>
+
+<p>
+92
+</p>
+
+<p>
+When a domain reaches a point where the knowledge for skillful professional practice cannot be acquired in a decade, more or less, then several adaptive developments are likely to occur. Specialization will usually increase (as it has, for example, in medicine), and practicioners will make increasing use of books and other external reference aids in their work. <br>
+Architecture is a good example of a domain where much of the information a professional requires is stored in reference works, such as catalogues of available building materials, equipment, and components, and official building codes. No architect expects to keep all of this in his head or to design without frequent resort to these information sources. In fact architecture can almost be taken as a prototype for the process of design in a sematically rich task domain. The emerging design is itself incorporated in a set of external memory structures: sketches, floorplans, drawings of utility systems, and so on. At each stage in the design process, the partial design reflected in these documents serves as a major stimulus for suggesting to the designer what he should attend to next. This direction to new subgoals permits in turn new information to be extracted from memory and reference sources and another step to be taken toward the development of the design. 
+</p>
+
+<p>
+108
+</p>
+
+<p>
+- BACON, AM, DENDRAL and MECHEM programs simulating scientific discovery; see Qin and Simon, “Laboratory Replication of Scientific Discovery Processes,” Cognitive Science 14(1990):281-312
+</p>
+
+<p>
+The AM and BACON programs and their successors give us some reason to believe that discovery processes do not introduce new kinds of complexity into human cognition. 
+</p>
+
+<p>
+Finding New Problem Representations<br>
+Every problem-solving effort must begin with creating a representation for the problem - a problem space in which the search for the solution can take place. Of course, for most of the problems we encounter … we simply retrieve from memory a representation that we have already stored and used on previous occasions. Sometimes, we have to adapt the representation a bit to the new situation, but that is usually a rather simple manner. <br>
+Occasionally, however, we encounter a situation that doesn’t seem to fit any of the problem spaces we have encountered before, even with some streching and shaping. Then we are faced with a task of discovery that may be as formidable as finding a new natural law. Newton was able to discover the law of gravitation because he had previously found a new representation, the differential calculus, that Wren and Hooke, among others who were also searching for the law, didn’t have. 
+</p>
+
+<p>
+111
+</p>
+
+<p>
+<ol type="1" start="5">
+<li>THE SCIENCE OF DESIGN: CREATING THE ARTIFICIAL</li>
+</ol>
+</p>
+
+<p>
+… Everyone designs who devises courses of action aimed at changing existing situations into preferred ones. The intellectual activity that produces material artifacts is no different fundamentally from the one that prescribes remedies for a sick patient or the one that devises a new sales plan for a company or a social welfare policy for a state. Design, so construed, is the core of all professional training; it is the principal mark that distinguishes the professions from the sciences. 
+</p>
+
+<p>
+113
+</p>
+
+<p>
+… The proper study of those who are concerned with the artificial is the way in which that adaptation of means to environments is brought about - and central to that is the process of design itself. 
+</p>
+
+<p>
+119
+</p>
+
+<p>
+Finding satisfactory actions
+</p>
+
+<p>
+120
+</p>
+
+<p>
+An earmark of all these situations where we satisfice for inability to optimize is that, although the set of available alternatives is “given” in a certain abstract sense (we can define a generator guaranteed to generate all of them eventually), it is not “given” in the only sense that is practically relevant. We cannot within practicable computational limits generate all the admissibile alternatives and compare their respective merits. Nor can we recognize the best alternative, even if we are fortunate enough to generate it early, until we have seen all of them. We satisfice by looking for alternatives in such a way that we can generally find an acceptable one after only moderate search.<br>
+Now in many satisficing situations, the expected length of search for an alternative meeting specified standards of acceptability depends no how high the standards are set, but it depends hardly at all on the total size of the universe to be searched. The time required for a search through a haystack for a needle sharp enough to sew with depends on the density of distribution of sharp needles but not on the total size of the stack. <br>
+121<br>
+Hence, when we use satisficing methods, it often does not matter whether or not the total set of admissible alternatives is “given” by a formal but impracticable algorithm. It often does not even matter how big that set is. For this reason satisficing methods may be extendable to design problems in that broad range where the set of alternatives is not “given” even in the quixotic sense that it is “given” for the traveling salesman problem. 
+</p>
+
+<p>
+124
+</p>
+
+<p>
+… the real worlds to which problem solvers and designers address themselves are seldom completely additive … Actions have side consequences (may create new differences) and sometimes can only be taken when certain side conditions are satisfied (call for removal of other differences before they become applicable). Under these circumstances one can never be certain that a partial sequence of actions that accomplishes certain goals can be augmented to provide a solution that satisfies all the conditions and attains all the goals (even though they be satisficing goals) of the problem.<br>
+For this reason problem-solving systems and design procedures in the real world do not merely assemble problem solutions from components but must search for appropriate assemblies. In carrying out such a search, it is often efficient to divide one’s eggs among a number of baskets - that is, not to follow out one line until it succeeds completely or fails definitely but to begin to explore several tentative paths, continuing to pursue a few that look most promising at a given moment. If one of the active paths begins to look less promising, it may be replaced by another that had previously been assigned a lower priority.
+</p>
+
+<p>
+126
+</p>
+
+<p>
+Schemes for Guiding Search
+</p>
+
+<p>
+138
+</p>
+
+<p>
+<ol type="1" start="6">
+<li>SOCIAL PLANNING: DESIGNING THE EVOLVING ARTIFACT</li>
+</ol>
+</p>
+
+<p>
+141
+</p>
+
+<p>
+Representing the design problem<br>
+… Representation problems take on new dimensions where social design is involved.
+</p>
+
+<p>
+143
+</p>
+
+<p>
+Finding the Limiting Resource
+</p>
+
+<p>
+A second example illustrates the importance, in choosing a representation for a design problem, of identifying correctly the limiting resource or resources. … [example from State Department teletype lines being blocked due to incoming traffic, solution sought in buying line printers that would be faster, but the bottleneck is in the capacity of officers at the country desks to process the messages that would come off the printers]<br>
+… Identification of the bottleneck would have generated in turn a more sophisticated desig problem: How can incoming messages during a crissi be filtered in such a way that important information will have priority and will come to the attention of the decision makers, while unimportant information will be shunted aside until the crisis is past? Stated in this way, the design problem is not an easy<br>
+144<br>
+one, but if a solution is found, even a partial one, it will at least tend to alleviate the real problem instead of aggravating it. … A design representation suitable to a world in which the scarce factor is information may be exaclty the wrong one for a world in which the scarce factor is attention.
+</p>
+
+<p>
+157
+</p>
+
+<p>
+Discounting The Future
+</p>
+
+<p>
+Thus the events and prospective events that enter into our value systems are all dated, and the importance we attach to them generally drops off sharply with their distance in time. For the creatures of bounded rationality that we are, this is fortunate. If our decisions depended equally upon their remote and their proximate consequences, we could never act but would be forever lost in thought. By applying a heavy discount factor to events, attenuating them with their remoteness in time and space, we reduce our problems of choice to a size commensurate with our limited computing capabilities. <br>
+… <br>
+…why the concern tends to be so myopic with respect to the future. At least one part of the explanation is that we are unable to think coherently about the remote future, and particularly about the distant consequences of our actions. Our myopia is not adaptive, but symptomatic of the limits of our adaptability. It is one of the constraints on adaptation belonging to the inner environment. 
+</p>
+
+<p>
+138
+</p>
+
+<p>
+Our uncorcern with a distant future is not merely a failure of empathy but a recognition that (1) we shall probably not be able to foresee and calculate the consequences of our actions for more than short distances into the future and (2) those consequences will in any case be diffuse rather than specific.
+</p>
+
+<p>
+162
+</p>
+
+<p>
+Designing without Final Goals
+</p>
+
+<p>
+- see March, “Bounded Rationality, Ambiguity, and the Engineering of Choice” Bell Journal of Economics 9(1978):587-608
+</p>
+
+<p>
+It seems “obvious” that the very concept of rationality implies goals at which thought and action are aimed. How can we evaluate a design unless we have well-defined criteria against which to judge it, and how can the design process itself proceed without such criteria to guide it?<br>
+- some discussion in chapter 5 on discovery processes:<br>
+We see there that search guided by only the most general heuristics of “interestingness” or novelty is a fully realizable activity. This kind of search, which provides the mechanism for scientific discovery, may also provide the most suitable model of the social design process. <br>
+… Exposure to new experiences is almost certain to change the criteria of choice, and most human beings deliberately seek out such experiences. <br>
+A paradoxical, but perhaps realistic, view of design goals is that their function is to motivate activity which in turn will generate new goals. <br>
+…<br>
+163<br>
+It is also beside the point to ask whether the later stages of the develpment were consistent with the initial one - whether the original designs were realized. Each step of implementation created a new situatio; and the new situation provided a startign point for fresh design activity. <br>
+…
+</p>
+
+<p>
+The Starting Point<br>
+The idea of final goals is inconsistent with our limited ability to foretell or determine the future. The real result of our actions is to establish initial conditions for the next succeeding stage of action. What we call “final” goals are in fact criteria for choosing the initial conditions that we will leave to our successors. 
+</p>
+
+<p>
+195
+</p>
+
+<p>
+The sources of selectivity<br>
+- two basic sources of selectivity (feedback from the environment) in problem solving:<br>
+<ol type="1" start="1">
+<li>various paths are tried out, the consequences of following them are noted, and this information is used to guide further search</li>
+<li>previous experience: </li>
+</ol>
+We see this particularly clearly when the problem to be solved is<br>
+196<br>
+similar to one that has been solved before. Then, by simply trying again the paths that led to the earlier solution, or their analogues, trial-and-error search is greatly reduced or altogether eliminated.<br>
+ts. innovaatioissa etsintä nopeutuu huomattavasti kun voidaan hyväksikäyttää aikaisempia “palikoita”
+</p>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+                    <br></br>
+                    
+                    <hr class='footnotes'>
+                    <span class="backlinks">
+                        <hr class='footnotes'>
+                        <b>Backlinks:</b>
+                        <a href='..\..\INDEX\COGNITION.html'>INDEX:COGNITION</a>
+                        
+                        <a href='..\..\INDEX\COMPLEXITY.html'>INDEX:COMPLEXITY</a>
+                        
+                        <a href='..\..\INDEX\LIMITS\Knowledge.html'>INDEX:LIMITS:Knowledge</a>
+                        
+                        <a href='..\..\INDEX\TECHNOLOGY\Philosophy.html'>INDEX:TECHNOLOGY:Philosophy</a>
+                        <br /><br />
+                    </span>
+    
+                <!-- !! The script will center all images. If you prefer the default (images at left delete these three lines -->    
+                <script>
+                    $( "img" ).wrap( "<div class='imgcenter'></div>" );
+                </script>
+    
+                
+            </div>
+            
+            <!-- Navigation panel -->
+            
+            <div data-role="panel" data-position-fixed="true" data-display="reveal" data-theme="a" id="nav-panel" data-dismissible="false">
+                <div style="display:inline-block;">
+                    
+                    <!-- !! If you want to place your logo, uncomment the next section and fill in the link between the quotation marks after href if you want the logo to link to another page or website -->
+                    <!-- <div id="logos" align="center">
+                        <a title="your title" href="" target="_blank">
+                            <img src=..\..\_resources\zim_logo.png style="border-style:none" align="right"></a>
+                    </div> -->
+                    
+                    <div>
+                        <!-- !! optionally.. add your custom search engine script -->
+                        <a href="#header" data-rel="close" data-role="button" data-theme="a" data-icon="delete" data-inline="true">Close panel</a>
+    
+                        <!-- !! optionally.. add link to start page or index page. To do so, uncomment the next 2 lines and fill in the webpage name / url-->
+                        <!-- <br></br>
+                        <a href="./link-to-start-page.html">Name of page</a>-->
+                        
+                        <!-- Generate the links to other pages (between-pages table of contents -->
+                        <ul>
+<li><a href="..\..\INDEX.html" title="INDEX" class="page">INDEX</a></li>
+<li><a href="..\..\PLAN_B.html" title="PLAN B" class="page">PLAN B</a></li>
+<li><a href="..\..\V.html" title="V" class="page">V</a>
+<ul>
+<li><a href="..\1846.html" title="1846" class="page">1846</a></li>
+<li><a href="..\1852.html" title="1852" class="page">1852</a></li>
+<li><a href="..\1854.html" title="1854" class="page">1854</a></li>
+<li><a href="..\1858.html" title="1858" class="page">1858</a></li>
+<li><a href="..\1861.html" title="1861" class="page">1861</a></li>
+<li><a href="..\1864.html" title="1864" class="page">1864</a></li>
+<li><a href="..\1888.html" title="1888" class="page">1888</a></li>
+<li><a href="..\1910.html" title="1910" class="page">1910</a></li>
+<li><a href="..\1920.html" title="1920" class="page">1920</a></li>
+<li><a href="..\1921.html" title="1921" class="page">1921</a></li>
+<li><a href="..\1922.html" title="1922" class="page">1922</a></li>
+<li><a href="..\1925.html" title="1925" class="page">1925</a></li>
+<li><a href="..\1926.html" title="1926" class="page">1926</a></li>
+<li><a href="..\1928.html" title="1928" class="page">1928</a></li>
+<li><a href="..\1933.html" title="1933" class="page">1933</a></li>
+<li><a href="..\1934.html" title="1934" class="page">1934</a></li>
+<li><a href="..\1944.html" title="1944" class="page">1944</a></li>
+<li><a href="..\1946.html" title="1946" class="page">1946</a></li>
+<li><a href="..\1947.html" title="1947" class="page">1947</a></li>
+<li><a href="..\1949.html" title="1949" class="page">1949</a></li>
+<li><a href="..\1950.html" title="1950" class="page">1950</a></li>
+<li><a href="..\1952.html" title="1952" class="page">1952</a></li>
+<li><a href="..\1954.html" title="1954" class="page">1954</a></li>
+<li><a href="..\1956.html" title="1956" class="page">1956</a></li>
+<li><a href="..\1958.html" title="1958" class="page">1958</a></li>
+<li><a href="..\1959.html" title="1959" class="page">1959</a></li>
+<li><a href="..\1966.html" title="1966" class="page">1966</a></li>
+<li><a href="..\1967.html" title="1967" class="page">1967</a></li>
+<li><a href="..\1969.html" title="1969" class="page">1969</a>
+<ul>
+<li><b>Artificial-Simon</b></li>
+<li><a href="./CubanCrisis-Allison.html" title="CubanCrisis-Allison" class="page">CubanCrisis-Allison</a></li>
+</ul>
+</li>
+<li><a href="..\1970.html" title="1970" class="page">1970</a></li>
+<li><a href="..\1972.html" title="1972" class="page">1972</a></li>
+<li><a href="..\1973.html" title="1973" class="page">1973</a></li>
+<li><a href="..\1975.html" title="1975" class="page">1975</a></li>
+<li><a href="..\1976.html" title="1976" class="page">1976</a></li>
+<li><a href="..\1977.html" title="1977" class="page">1977</a></li>
+<li><a href="..\1978.html" title="1978" class="page">1978</a></li>
+<li><a href="..\1980.html" title="1980" class="page">1980</a></li>
+<li><a href="..\1981.html" title="1981" class="page">1981</a></li>
+<li><a href="..\1982.html" title="1982" class="page">1982</a></li>
+<li><a href="..\1983.html" title="1983" class="page">1983</a></li>
+<li><a href="..\1984.html" title="1984" class="page">1984</a></li>
+<li><a href="..\1985.html" title="1985" class="page">1985</a></li>
+<li><a href="..\1986.html" title="1986" class="page">1986</a></li>
+<li><a href="..\1987.html" title="1987" class="page">1987</a></li>
+<li><a href="..\1988.html" title="1988" class="page">1988</a></li>
+<li><a href="..\1989.html" title="1989" class="page">1989</a></li>
+<li><a href="..\1990.html" title="1990" class="page">1990</a></li>
+<li><a href="..\1991.html" title="1991" class="page">1991</a></li>
+<li><a href="..\1992.html" title="1992" class="page">1992</a></li>
+<li><a href="..\1993.html" title="1993" class="page">1993</a></li>
+<li><a href="..\1994.html" title="1994" class="page">1994</a></li>
+<li><a href="..\1995.html" title="1995" class="page">1995</a></li>
+<li><a href="..\1996.html" title="1996" class="page">1996</a></li>
+<li><a href="..\1997.html" title="1997" class="page">1997</a></li>
+<li><a href="..\1998.html" title="1998" class="page">1998</a></li>
+<li><a href="..\1999.html" title="1999" class="page">1999</a></li>
+<li><a href="..\2000.html" title="2000" class="page">2000</a></li>
+<li><a href="..\2001.html" title="2001" class="page">2001</a></li>
+<li><a href="..\2002.html" title="2002" class="page">2002</a></li>
+<li><a href="..\2003.html" title="2003" class="page">2003</a></li>
+<li><a href="..\2004.html" title="2004" class="page">2004</a></li>
+<li><a href="..\2005.html" title="2005" class="page">2005</a></li>
+<li><a href="..\2006.html" title="2006" class="page">2006</a></li>
+<li><a href="..\2007.html" title="2007" class="page">2007</a></li>
+<li><a href="..\2008.html" title="2008" class="page">2008</a></li>
+<li><a href="..\2009.html" title="2009" class="page">2009</a></li>
+<li><a href="..\2010.html" title="2010" class="page">2010</a></li>
+<li><a href="..\2011.html" title="2011" class="page">2011</a></li>
+<li><a href="..\2012.html" title="2012" class="page">2012</a></li>
+<li><a href="..\2013.html" title="2013" class="page">2013</a></li>
+<li><a href="..\2014.html" title="2014" class="page">2014</a></li>
+<li><a href="..\2015.html" title="2015" class="page">2015</a></li>
+<li><a href="..\2016.html" title="2016" class="page">2016</a></li>
+<li><a href="..\2017.html" title="2017" class="page">2017</a></li>
+<li><a href="..\2018.html" title="2018" class="page">2018</a></li>
+<li><a href="..\2019.html" title="2019" class="page">2019</a></li>
+<li><a href="..\2020.html" title="2020" class="page">2020</a></li>
+<li><a href="..\2021.html" title="2021" class="page">2021</a></li>
+<li><a href="..\CONFS.html" title="CONFS" class="page">CONFS</a></li>
+<li><a href="..\Databases.html" title="Databases" class="page">Databases</a></li>
+<li><a href="..\Journals.html" title="Journals" class="page">Journals</a></li>
+<li><a href="..\Literature_Review_-_Capitalism_and_Growth.html" title="Literature Review - Capitalism and Growth" class="page">Literature Review - Capitalism and Growth</a></li>
+<li><a href="..\Unsorted.html" title="Unsorted" class="page">Unsorted</a></li>
+</ul>
+</li>
+<li><a href="..\..\ZK.html" title="ZK" class="page">ZK</a></li>
+</ul>
+
+
+                        <!-- Current document's Table Of Contents placeholder and style, this table of content will be generated from headers in the document -->
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.css">
+                        <style src="text/css">
+                        .toc-link, .toc-list-item, .toc-list-item a {
+                            /* Remove underlining for all toc entries */
+                            text-decoration: none;
+                        }
+                        .toc-link:not(.is-active-link) {
+                            /* Only leave the active toc entry (currently watched) as bold, else put text in normal weight */
+                            font-weight: normal !important;
+                        }
+                        </style>
+                        <nav class="toc js-toc relative z-1 transition--300 pa4" style="position: relative; max-width:inherit;">
+                        </nav>
+
+                        <!-- !! Optionally, button which brings the user to your contact form. To enable this, remove comment mark below and fill in the link between the quoation marks after href -->
+                        <!--<br></br>
+                        <a title="Contact us" data-icon="info" href="" data-role="button" target="_blank">Contact us</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate the Table Of Contents dynamically using javascript (via tocbot) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script>
+    <script type="text/javascript">
+    var content = document.body
+    var headings = content.querySelectorAll('h1, h2, h3, h4, h5, h6, h7')
+    var headingMap = {}
+
+    <!-- generate ids dynamically for each header, that's necessary for tocbot to work, source makeids from tocbot repository -->
+    Array.prototype.forEach.call(headings, function (heading) {
+        var id = heading.id ? heading.id : heading.textContent.trim().toLowerCase()
+            .split(' ').join('-').replace(/[!@#$%^&*():]/ig, '').replace(/\//ig, '-')
+        headingMap[id] = !isNaN(headingMap[id]) ? ++headingMap[id] : 0
+        if (headingMap[id]) {
+            heading.id = id + '-' + headingMap[id]
+        } else {
+            heading.id = id
+        }
+        // Add a self-referential link on the header's anchor, easier to share + jump to this anchor if clicked
+        heading.innerHTML = "<a href=\"#"+id+"\" onclick=\"jumpToAnchor('"+id+"');\";>"+heading.innerHTML+"</a>"
+    })
+
+    function jumpToAnchor(anchorId) {
+    // jump to an anchor
+    // from: https://stackoverflow.com/a/52138511/1121352
+    $(document).ready(function() {
+        // Pure JS solution, that doesn't cause the window to go back to the top before sliding to the anchor
+        const element = document.querySelector('#'+anchorId)
+        const topPos = element.getBoundingClientRect().top + window.pageYOffset
+
+        window.scrollTo({
+            top: topPos, // scroll so that the element is at the top of the view
+            behavior: 'smooth' // smooth scroll
+        })
+        // JQuery solution
+        /*
+        $('html, body').animate({
+            'scrollTop':   $('#'+anchorId).offset().top
+        }, 500);
+        */
+        // Ensure the anchor is added in the URL so the user can more easily copy the link and share from the browser's address bar directly
+        location.hash = "#" + anchorId;
+    });
+    }; // }(JQuery);
+
+    <!-- initialize tocbot with some options -->
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.js-toc',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: '.content',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      // For headings inside relative or absolute positioned containers within content.
+      hasInnerContainers: true,
+      // Header levels collapsing by default
+      collapseDepth: 2,
+    });
+
+    <!-- ensure the window is scrolled to the anchor after the page finished loading (else jquery may scroll back to top, particularly on mobile) -->
+    document.addEventListener('DOMContentLoaded', function() {
+        anchor = window.top.location.hash;
+        anchor = anchor.split("#").pop();
+        jumpToAnchor(anchor);
+    }, false);
+    </script>
+
+</body>
+</html>
