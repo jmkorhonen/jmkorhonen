@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MapEditor v0.4.0</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
+  <style>
+    :root{
+      --pad: 8px;
+      --gap: 6px;
+    }
+    body, html { margin: 0; padding: 0; height: 100%; }
+    #controls {
+      padding: 0.5rem;
+      background: white;
+      z-index: 1000;
+      position: sticky; top: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex; flex-wrap: wrap; gap: var(--gap); align-items: center;
+      font: 14px system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    #map { height: calc(100vh - 60px); }
+    button { padding: 6px 10px; font-size: 14px; cursor: pointer; }
+    select, input[type="file"] { font-size: 14px; }
+
+    /* Popup form styles */
+    .form-grid{ display:grid; grid-template-columns: 1fr; gap: var(--gap); }
+    .form-grid label{ font-weight: 600; font-size: 12px; }
+    .form-grid input, .form-grid textarea, .form-grid select{
+      width: 100%; box-sizing: border-box; padding: 6px; border: 1px solid #ccc; border-radius: 6px;
+      font: 13px system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+    .form-actions{ display:flex; gap: var(--gap); margin-top: 8px; }
+    .btn-primary{ background:#0b69ff; color:white; border:0; border-radius:8px; }
+    .btn-secondary{ background:#f2f2f2; color:#333; border:1px solid #e3e3e3; border-radius:8px; }
+    .req{ color:#d00; margin-left:4px; }
+    .error{ border-color:#d00 !important; background:#fff7f7; }
+    .hint{ font-size: 11px; color:#666; }
+  </style>
+</head>
+<body>
+<div id="controls">
+  <button onclick="triggerGeoJSONLoad()">📂 Load GeoJSON</button>
+  <button onclick="downloadGeoJSON()">💾 Save to GeoJSON</button>
+  <input type="file" id="geojson-input" accept=".geojson,.json" style="display:none" />
+  <button onclick="triggerExcelLoad()">📥 Import xlsx</button>
+  <input type="file" id="excel-input" accept=".xlsx" style="display:none" />
+  <button onclick="exportToExcel()">📊 Export xlsx</button>
+  <span style="margin-left:10px">Add:</span>
+  <select id="marker-role">
+    <option value="origin" selected>origin (blue)</option>
+    <option value="destination">destination (red)</option>
+    <option value="depot">depot (gold)</option>
+    <option value="other">other (green)</option>
+  </select>
+  <button class="btn-secondary" onclick="exportSchema()" title="Download field schema JSON">🧩 Export fields</button>
+  <button class="btn-secondary" onclick="triggerSchemaLoad()" title="Load field schema JSON">🧩 Import fields</button>
+  <input type="file" id="schema-input" accept=".json" style="display:none" />
+  <a href="map_editor_user_guide.html" target="_blank">Help</a>
+</div>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+// --- Base map
+const map = L.map('map').setView([61, 25], 6);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap' }).addTo(map);
+const drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+// --- Marker colors per role
+const roleColors = { origin:'blue', destination:'red', depot:'gold', other:'green' };
+
+// --- Role-based field schema (editable via Import/Export)
+// type: 'text' | 'number' | 'textarea' | 'select' | 'checkbox'
+let FIELD_SCHEMA = JSON.parse(localStorage.getItem('fieldSchemaV040')) || {
+  common: [
+    { key:'role', label:'Role', type:'select', required:true, options:['origin','destination','depot','other'] },
+    { key:'name', label:'Name', type:'text', required:true },
+    { key:'notes', label:'Notes', type:'textarea' }
+  ],
+  origin: [
+    { key:'output', label:'Output', type:'text' },
+    { key:'capacity', label:'Capacity', type:'number', step:'any' },
+    { key:'priority', label:'Priority', type:'number', step:1 }
+  ],
+  destination: [
+    { key:'demand', label:'Demand', type:'number', step:'any' },
+    { key:'window', label:'Time Window', type:'text' }
+  ],
+  depot: [
+    { key:'fleet', label:'Fleet size', type:'number', step:1 },
+    { key:'service_hours', label:'Service hours', type:'text' }
+  ],
+  other: [
+    { key:'category', label:'Category', type:'text' }
+  ]
+};
+
+// --- Tooltip templates per role (very simple {{key}} templating)
+let TOOLTIP_TPL = JSON.parse(localStorage.getItem('tooltipTplV040')) || {
+  default: '📍 {{name||"Unnamed"}} ({{role}})',
+  origin: '📍 {{name||"Origin"}} — cap {{capacity||"?"}}',
+  destination: '📍 {{name||"Dest"}} — dem {{demand||"?"}}',
+  depot: '🏁 {{name||"Depot"}} — fleet {{fleet||"?"}}',
+  other: '📍 {{name||"Point"}} ({{category||"other"}})'
+};
+
+function template(str, ctx){
+  return str.replace(/\{\{\s*([^}]+)\s*\}\}/g, (_, expr)=>{
+    // support fallback with ||, e.g., {{name||"Unnamed"}}
+    const parts = expr.split('||').map(s=>s.trim());
+    for(const p of parts){
+      if(p.startsWith('"') || p.startsWith("'")) return p.slice(1,-1);
+      const v = p.split('.').reduce((o,k)=> (o && o[k]!==undefined) ? o[k] : undefined, ctx);
+      if(v!==undefined && v!==null && v!=='') return v;
+    }
+    return '';
+  });
+}
+
+// --- Draw control
+const drawControl = new L.Control.Draw({
+  draw: { marker: { icon: new L.Icon.Default() }, polyline:false, polygon:false, rectangle:false, circle:false, circlemarker:false },
+  edit: { featureGroup: drawnItems, edit:true, remove:true }
+});
+map.addControl(drawControl);
+
+// --- Helpers
+function iconForRole(role){
+  const color = roleColors[role] || 'grey';
+  return new L.Icon({
+    iconUrl: `https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-${color}.png`,
+    iconSize: [25,41], iconAnchor: [12,41], popupAnchor: [1,-34]
+  });
+}
+
+function updateMarkerIcon(layer){
+  const role = layer.feature?.properties?.role || 'other';
+  layer.setIcon(iconForRole(role));
+}
+
+function setTooltip(layer){
+  const props = layer.feature?.properties || {};
+  const role = props.role || 'other';
+  const tpl = TOOLTIP_TPL[role] || TOOLTIP_TPL.default;
+  const text = template(tpl, props);
+  layer.bindTooltip(text, { permanent:false, direction:'top' });
+}
+
+function saveToLocalStorage(){
+  const geojson = drawnItems.toGeoJSON();
+  localStorage.setItem('mapData', JSON.stringify(geojson));
+  localStorage.setItem('fieldSchemaV040', JSON.stringify(FIELD_SCHEMA));
+  localStorage.setItem('tooltipTplV040', JSON.stringify(TOOLTIP_TPL));
+}
+
+// --- Dynamic popup form builder
+function formFieldHtml(field, value){
+  const id = `${field.key}-input`;
+  const req = field.required ? '<span class="req">*</span>' : '';
+  const attrStep = field.step ? ` step="${field.step}"` : '';
+  const val = value ?? '';
+  if(field.type === 'textarea'){
+    return `<label for="${id}">${field.label}${req}</label><textarea id="${id}" rows="3">${val}</textarea>`;
+  }
+  if(field.type === 'select'){
+    const opts = (field.options||[]).map(o=>`<option value="${o}" ${String(val)===String(o)?'selected':''}>${o}</option>`).join('');
+    return `<label for="${id}">${field.label}${req}</label><select id="${id}">${opts}</select>`;
+  }
+  if(field.type === 'checkbox'){
+    const checked = val ? 'checked' : '';
+    return `<label><input type="checkbox" id="${id}" ${checked}/> ${field.label}${req}</label>`;
+  }
+  // text / number
+  const type = field.type === 'number' ? 'number' : 'text';
+  return `<label for="${id}">${field.label}${req}</label><input type="${type}" id="${id}" value="${val}"${attrStep}/>`;
+}
+
+function bindFormPopup(layer){
+  const props = layer.feature?.properties || {};
+  const role = props.role || document.getElementById('marker-role').value || 'other';
+
+  // Build field list: common + role-specific
+  const fields = [...(FIELD_SCHEMA.common||[]), ...((FIELD_SCHEMA[role])||[])];
+
+  const fieldsHtml = fields.map(f=>{
+    const v = (f.type==='checkbox') ? Boolean(props[f.key]) : (props[f.key] ?? '');
+    return formFieldHtml(f, v);
+  }).join('');
+
+  const formHtml = `
+    <form class="form-grid" onsubmit="return false;">
+      ${fieldsHtml}
+      <div class="hint">Fields marked with <span class="req">*</span> are required.</div>
+      <div class="form-actions">
+        <button id="save-props-btn" class="btn-primary" type="submit">💾 Save</button>
+        <button id="delete-marker-btn" class="btn-secondary" type="button">🗑️ Delete</button>
+      </div>
+    </form>`;
+
+  layer.bindPopup(formHtml);
+  layer.on('click', ()=> layer.openPopup());
+  layer.on('popupopen', ()=>{
+    setTimeout(()=>{
+      const elSave = document.getElementById('save-props-btn');
+      const elDelete = document.getElementById('delete-marker-btn');
+
+      elDelete.onclick = () => { drawnItems.removeLayer(layer); saveToLocalStorage(); };
+
+      elSave.onclick = () => {
+        // Read role first (it may change)
+        const roleField = (FIELD_SCHEMA.common||[]).find(f=>f.key==='role');
+        const roleVal = roleField ? document.getElementById(`${roleField.key}-input`).value : (props.role||'other');
+
+        // Collect values with simple validation
+        const newProps = { ...props, role: roleVal };
+        let valid = true;
+        const allFields = [...(FIELD_SCHEMA.common||[]), ...((FIELD_SCHEMA[roleVal])||[])];
+        allFields.forEach(f=>{
+          const id = `${f.key}-input`;
+          const input = document.getElementById(id);
+          if(!input) return;
+          let v;
+          if(f.type==='checkbox') v = input.checked;
+          else if(f.type==='number') v = input.value === '' ? null : Number(input.value);
+          else v = input.value;
+
+          newProps[f.key] = v;
+          // basic required validation
+          if(f.required && (v===null || v===undefined || v==='')){
+            valid = false; input.classList.add('error');
+          } else if(input.classList){
+            input.classList.remove('error');
+          }
+        });
+
+        if(!valid){ return; }
+
+        layer.feature.properties = newProps;
+        updateMarkerIcon(layer);
+        setTooltip(layer);
+        // Rebuild the form in case role changed (different fields)
+        bindFormPopup(layer); layer.openPopup();
+        saveToLocalStorage();
+      };
+    }, 50);
+  });
+
+  setTooltip(layer);
+}
+
+// --- Draw events
+map.on(L.Draw.Event.CREATED, (event)=>{
+  const layer = event.layer;
+  const role = document.getElementById('marker-role').value;
+  layer.feature = { type:'Feature', properties:{ role, name:'', notes:'' } };
+  updateMarkerIcon(layer);
+  bindFormPopup(layer);
+  layer.openPopup();
+  drawnItems.addLayer(layer);
+  saveToLocalStorage();
+});
+map.on(L.Draw.Event.EDITED, saveToLocalStorage);
+map.on(L.Draw.Event.DELETED, saveToLocalStorage);
+
+// --- Export / Import GeoJSON
+function downloadGeoJSON(){
+  const geojson = drawnItems.toGeoJSON();
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(geojson, null, 2));
+  const link = document.createElement('a'); link.href = dataStr; link.download = 'points.geojson'; link.click();
+}
+function triggerGeoJSONLoad(){ document.getElementById('geojson-input').click(); }
+
+document.getElementById('geojson-input').addEventListener('change', (e)=>{
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev)=>{
+    const geojsonData = JSON.parse(ev.target.result);
+    L.geoJSON(geojsonData, {
+      pointToLayer: (feature, latlng)=>{
+        const marker = L.marker(latlng, { icon: iconForRole(feature.properties?.role) });
+        marker.feature = { type:'Feature', properties: feature.properties || {} };
+        bindFormPopup(marker); drawnItems.addLayer(marker);
+        return marker;
+      }
+    });
+    saveToLocalStorage();
+  };
+  reader.readAsText(file);
+});
+
+// --- Export / Import Excel
+function triggerExcelLoad(){ document.getElementById('excel-input').click(); }
+
+document.getElementById('excel-input').addEventListener('change', (e)=>{
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev)=>{
+    const data = new Uint8Array(ev.target.result);
+    const workbook = XLSX.read(data, { type:'array' });
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(sheet);
+
+    rows.forEach(row=>{
+      const lat = parseFloat(row.lat ?? row.latitude);
+      const lon = parseFloat(row.lon ?? row.longitude);
+      if(isNaN(lat) || isNaN(lon)) return;
+      const props = { ...row }; delete props.lat; delete props.lon;
+      const marker = L.marker([lat,lon], { icon: iconForRole(props.role) });
+      marker.feature = { type:'Feature', properties: props };
+      bindFormPopup(marker); drawnItems.addLayer(marker);
+    });
+    saveToLocalStorage();
+  };
+  reader.readAsArrayBuffer(file);
+});
+
+function exportToExcel(){
+  const geojson = drawnItems.toGeoJSON();
+  if(!geojson.features.length){ alert('No markers to export.'); return; }
+  const rows = geojson.features.map((f,i)=>({ id:i+1, lat:f.geometry.coordinates[1], lon:f.geometry.coordinates[0], ...(f.properties||{}) }));
+  const ws = XLSX.utils.json_to_sheet(rows); const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Map Points');
+  XLSX.writeFile(wb, 'map_editor_export.xlsx');
+}
+
+// --- Persist & Load session
+function loadFromLocalStorage(){
+  const stored = localStorage.getItem('mapData'); if(!stored) return;
+  const geojson = JSON.parse(stored);
+  L.geoJSON(geojson, {
+    pointToLayer: (feature, latlng)=>{
+      const marker = L.marker(latlng, { icon: iconForRole(feature.properties?.role) });
+      marker.feature = { type:'Feature', properties: feature.properties || {} };
+      bindFormPopup(marker); drawnItems.addLayer(marker);
+      return marker;
+    }
+  });
+}
+loadFromLocalStorage();
+
+// --- Field schema import/export
+function exportSchema(){
+  const data = { FIELD_SCHEMA, TOOLTIP_TPL };
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data, null, 2));
+  const link = document.createElement('a'); link.href = dataStr; link.download = 'map_field_schema.json'; link.click();
+}
+function triggerSchemaLoad(){ document.getElementById('schema-input').click(); }
+
+document.getElementById('schema-input').addEventListener('change', (e)=>{
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev)=>{
+    try{
+      const data = JSON.parse(ev.target.result);
+      if(data.FIELD_SCHEMA) FIELD_SCHEMA = data.FIELD_SCHEMA;
+      if(data.TOOLTIP_TPL) TOOLTIP_TPL = data.TOOLTIP_TPL;
+      saveToLocalStorage();
+      // Rebind forms so new schema reflects immediately
+      drawnItems.eachLayer(layer=>{ bindFormPopup(layer); });
+      alert('Field schema loaded.');
+    }catch(err){ alert('Invalid schema JSON.'); }
+  };
+  reader.readAsText(file);
+});
+</script>
+</body>
+</html>
