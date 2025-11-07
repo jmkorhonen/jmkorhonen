@@ -7,4 +7,8 @@ Tein Sorsa-säätiön hommissa laskurin autoilun ja ylipäänsä liikkumisen kus
 
 Tarkoituksena oli haarukoida, milloin sähköautoilu voisi olla niin halpaa, että siihen vaihtaminen olisi "no brainer."
 
-Excel/Liikkumisen_kustannukset_v2.41_2023-11-08.xlsx
+Laskurin saa ladattua tästä, 
+[Liikkumisen_kustannukset_v2.41_2023-11-08.xlsx](https://github.com/jmkorhonen/jmkorhonen/blob/main/Excel/Liikkumisen_kustannukset_v2.41_2023-11-08.xlsx)
+
+tai sitten OneDrivestä, niin kauan kun linkki toimii:
+[Liikkumisen kustannukset v2.41 OneDrivessä](https://1drv.ms/x/c/6211aaa9a49964d4/EdRkmaSpqhEggGLoDQAAAAAB-ZDAC7vJwEovwkqoXPsWVw?e=M6JVZS)
