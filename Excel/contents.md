@@ -7,3 +7,4 @@ Tein Sorsa-säätiön hommissa laskurin autoilun ja ylipäänsä liikkumisen kus
 
 Tarkoituksena oli haarukoida, milloin sähköautoilu voisi olla niin halpaa, että siihen vaihtaminen olisi "no brainer."
 
+Excel/Liikkumisen_kustannukset_v2.41_2023-11-08.xlsx
